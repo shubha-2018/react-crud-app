@@ -1,8 +1,10 @@
 import axios from "axios";
 
-const API = "http://localhost:3001/users";
+const BASE_URL = "http://localhost:5000";
 
-export const getUsers = () => axios.get(API);
-export const addUser = (data) => axios.post(API, data);
-export const updateUser = (id, data) => axios.put(`${API}/${id}`, data);
-export const deleteUser = (id) => axios.delete(`${API}/${id}`);
+export const getUsers = () => axios.get(`${BASE_URL}/users`);
+export const addUser = (data) => axios.post(`${BASE_URL}/users`, data);
+export const updateUser = (id, data) =>
+  axios.put(`${BASE_URL}/users/${id}`, data);
+export const deleteUser = (id) =>
+  axios.delete(`${BASE_URL}/users/${id}`);

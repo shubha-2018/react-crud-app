@@ -8,15 +8,19 @@ export default function App() {
   const [selected, setSelected] = useState(null);
 
   const load = async () => {
-    const res = await getUsers();
-    setUsers(res.data || []);
+    try {
+      const res = await getUsers();
+      setUsers(res.data || []);
+    } catch (err) {
+      console.error("Load users failed", err);
+    }
   };
 
-  useEffect(()=>{ load(); }, []);
+  useEffect(() => { load(); }, []);
 
   return (
     <div>
-      <h2 style={{ textAlign:"center" }}>User Manager</h2>
+      <h2 style={{ textAlign: "center" }}>User Manager</h2>
       <UserForm selected={selected} reload={load} />
       <UserList users={users} edit={setSelected} reload={load} />
     </div>

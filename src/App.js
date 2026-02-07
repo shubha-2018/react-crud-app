@@ -16,7 +16,6 @@ export default function App() {
 
   return (
     <div>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <div className="flex items-center justify-center min-h-screen">
         <h2 className="text-4xl font-extrabold text-center mb-8 bg-gradient-to-r from-purple-600 via-purple-700 to-pink-600 bg-clip-text text-transparent mx-auto w-fit">
           User Manager

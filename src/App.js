@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import { getUsers } from "./api";
 import UserForm from "./UserForm";
 import UserList from "./UserList";
@@ -12,15 +12,11 @@ export default function App() {
     setUsers(res.data || []);
   };
 
-  useEffect(() => { load(); }, []);
+  useEffect(()=>{ load(); }, []);
 
   return (
     <div>
-      <div className="flex items-center justify-center min-h-screen">
-        <h2 className="text-4xl font-extrabold text-center mb-8 bg-gradient-to-r from-purple-600 via-purple-700 to-pink-600 bg-clip-text text-transparent mx-auto w-fit">
-          User Manager
-        </h2>
-      </div>
+      <h2 style={{ textAlign:"center" }}>User Manager</h2>
       <UserForm selected={selected} reload={load} />
       <UserList users={users} edit={setSelected} reload={load} />
     </div>

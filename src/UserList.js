@@ -10,7 +10,6 @@ export default function UserList({ users, edit, reload }) {
 
   return (
     <div className="list-container">
-      {/* Scrollable table on mobile */}
       <div className="overflow-x-auto">
         <table className="user-table">
           <thead>

@@ -22,8 +22,8 @@ export default function UserForm({ selected, reload }) {
       }
       reload();
       setForm({});
-    } catch (error) {
-      console.error("Error submitting form:", error);
+    } catch (err) {
+      console.error("Submit error:", err);
     } finally {
       setIsSubmitting(false);
     }

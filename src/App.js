@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getUsers } from "./api";
+import { addUser, updateUser } from "./api";
 import UserForm from "./UserForm";
 import UserList from "./UserList";
 
@@ -16,11 +17,13 @@ export default function App() {
     }
   };
 
-  useEffect(() => { load(); }, []);
+  useEffect(() => {
+    load();
+  }, []);
 
   return (
     <div>
-      <h2 style={{ textAlign: "center" }}>User Manager</h2>
+      <h2>User Manager</h2>
       <UserForm selected={selected} reload={load} />
       <UserList users={users} edit={setSelected} reload={load} />
     </div>

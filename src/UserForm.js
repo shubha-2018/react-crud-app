@@ -7,7 +7,7 @@ export default function UserForm({ selected, setSelected, users, setUsers }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    setForm(selected || {});
+    setForm(selected || {}); // Populate form if user is selected
   }, [selected]);
 
   const submit = async (e) => {
@@ -17,17 +17,17 @@ export default function UserForm({ selected, setSelected, users, setUsers }) {
     try {
       if (selected?.id) {
         const updatedUser = await updateUser(selected.id, form);
-        setUsers(prev => prev.map(u => u.id === selected.id ? updatedUser : u));
+        setUsers(prev => Array.isArray(prev) ? prev.map(u => u.id === selected.id ? updatedUser : u) : [updatedUser]);
       } else {
         const newUser = await addUser(form);
-        setUsers(prev => [...prev, newUser]);
+        setUsers(prev => Array.isArray(prev) ? [...prev, newUser] : [newUser]);
       }
 
       setForm({});
       setSelected(null);
     } catch (err) {
       console.error("Submit error", err);
-      alert(err.response?.data?.error || "User add/update failed");
+      alert(err.response?.data?.error || "User add/update अयशस्वी झाले");
     } finally {
       setIsSubmitting(false);
     }

@@ -3,7 +3,8 @@ import axios from "axios";
 const API = "https://react-crud-backend-6rl3.onrender.com";
 
 export const getUsers = async () => {
-  return await axios.get(`${API}/users`);
+  const res = await axios.get(`${API}/users`);
+  return res.data || []; // Always return array
 };
 
 export const addUser = async (data) => {

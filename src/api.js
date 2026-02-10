@@ -1,20 +1,20 @@
 import axios from "axios";
 
-const API = "https://react-crud-backend-6rl3.onrender.com";
+const API = process.env.REACT_APP_API_URL || "https://react-crud-backend-6rl3.onrender.com";
 
 export const getUsers = async () => {
   const res = await axios.get(`${API}/users`);
-  return res.data || []; // Always return array
+  return res.data || [];
 };
 
 export const addUser = async (data) => {
   const res = await axios.post(`${API}/users`, data);
-  return res.data; // RETURN the added user
+  return res.data;
 };
 
 export const updateUser = async (id, data) => {
   const res = await axios.put(`${API}/users/${id}`, data);
-  return res.data; // RETURN updated user
+  return res.data;
 };
 
 export const deleteUser = async (id) => {

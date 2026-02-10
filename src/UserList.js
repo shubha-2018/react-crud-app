@@ -342,7 +342,7 @@ export default function UserList({ users, edit, setUsers }) {
                     <td colSpan="5">
                       <div className="ul-empty">
                         <div className="ul-empty-icon">◎</div>
-                        <div className="ul-empty-text">कोणीही युजर सापडले नाही</div>
+                        <div className="ul-empty-text"></div>
                       </div>
                     </td>
                   </tr>

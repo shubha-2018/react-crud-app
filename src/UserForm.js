@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { fields } from "./fieldConfig";
 import { addUser, updateUser } from "./api";
 
-export default function UserForm({ selected, reload }) {
+export default function UserForm({ selected, setSelected, users, setUsers }) {
   const [form, setForm] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -16,16 +16,18 @@ export default function UserForm({ selected, reload }) {
 
     try {
       if (selected?.id) {
-        await updateUser(selected.id, form);
+        const updatedUser = await updateUser(selected.id, form);
+        setUsers(prev => prev.map(u => u.id === selected.id ? updatedUser : u));
       } else {
-        await addUser(form);
+        const newUser = await addUser(form);
+        setUsers(prev => [...prev, newUser]);
       }
 
       setForm({});
-      reload();
+      setSelected(null);
     } catch (err) {
       console.error("Submit error", err);
-      alert("User add/update failed. Check backend.");
+      alert(err.response?.data?.error || "User add/update failed");
     } finally {
       setIsSubmitting(false);
     }
@@ -42,7 +44,7 @@ export default function UserForm({ selected, reload }) {
           required={f.required}
         />
       ))}
-      <button type="submit">
+      <button type="submit" disabled={isSubmitting}>
         {selected ? "Update" : "Add"}
       </button>
     </form>

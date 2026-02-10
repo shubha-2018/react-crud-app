@@ -1,11 +1,11 @@
 import { deleteUser } from "./api";
 
-export default function UserList({ users, edit, reload }) {
+export default function UserList({ users, edit, setUsers }) {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure?")) {
       try {
         await deleteUser(id);
-        reload();
+        setUsers(prev => prev.filter(u => u.id !== id));
       } catch (err) {
         console.error(err);
         alert("Delete failed");

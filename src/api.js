@@ -1,8 +1,6 @@
 import axios from "axios";
 
-// const API = "https://user-backend.onrender.com";
-const API = "http://localhost:5000";
-
+const API = "https://react-crud-backend-6rl3.onrender.com";
 
 export const getUsers = () => axios.get(`${API}/users`);
 export const addUser = (data) => axios.post(`${API}/users`, data);
